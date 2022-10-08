@@ -21,8 +21,12 @@ impl Person {
             dob,
         }
     }
-    fn update(&mut self, first_name: String, last_name: String, dob: NaiveDateTime) {
+    fn update(&mut self, first_name: String, middle_name : Option<String> , last_name: String, dob: NaiveDateTime) {
         self.first_name = first_name;
+        self.middle_name = match middle_name {
+            Some(middle_name) => Some(middle_name),
+            None => Some("".to_string()),
+        };
         self.last_name = last_name;
         self.dob = dob;
     }
