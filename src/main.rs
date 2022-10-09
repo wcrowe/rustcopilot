@@ -112,10 +112,10 @@ fn main() {
         "John".to_string(),
         Some("R".to_string()),
         "Doe".to_string(),
-        NaiveDateTime::parse_from_str("1990-01-01 00:00:00", "%Y-%m-%d %H:%M:%S").unwrap(),
+        NaiveDateTime::parse_from_str("1940-01-01 00:00:00", "%Y-%m-%d %H:%M:%S").unwrap(),
     ));
     // print list of people
     for (i, p) in k.people.iter().enumerate() {
-        println!("{}: {}", i, p.full_name());
+        println!("{}: {} is {}", i, p.full_name(), p.age());
     }
 }
