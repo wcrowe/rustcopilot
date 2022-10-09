@@ -109,8 +109,8 @@ fn main() {
         NaiveDateTime::parse_from_str("1990-01-01 00:00:00", "%Y-%m-%d %H:%M:%S").unwrap(),
     ));
     k.add(Person::new(
-        "John".to_string(),
-        Some("R".to_string()),
+        "Jane".to_string(),
+        Some("K".to_string()),
         "Doe".to_string(),
         NaiveDateTime::parse_from_str("1940-01-01 00:00:00", "%Y-%m-%d %H:%M:%S").unwrap(),
     ));
@@ -124,7 +124,7 @@ fn main() {
         Person::new(
             "Jane".to_string(),
             Some("A".to_string()),
-            "Doe".to_string(),
+            "Smith".to_string(),
             NaiveDateTime::parse_from_str("1930-01-01 00:00:00", "%Y-%m-%d %H:%M:%S").unwrap(),
         ),
     );
