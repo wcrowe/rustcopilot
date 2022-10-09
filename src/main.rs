@@ -118,4 +118,18 @@ fn main() {
     for (i, p) in k.people.iter().enumerate() {
         println!("{}: {} is {}", i, p.full_name(), p.age());
     }
+    // update the 2nd person
+    k.update(
+        1,
+        Person::new(
+            "Jane".to_string(),
+            Some("A".to_string()),
+            "Doe".to_string(),
+            NaiveDateTime::parse_from_str("1930-01-01 00:00:00", "%Y-%m-%d %H:%M:%S").unwrap(),
+        ),
+    );
+    // print list of people
+    for (i, p) in k.people.iter().enumerate() {
+        println!("{}: {} is {}", i, p.full_name(), p.age());
+    }
 }
