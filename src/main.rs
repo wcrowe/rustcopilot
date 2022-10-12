@@ -1,6 +1,4 @@
-#[allow(unused_variables, dead_code)]
 use chrono::NaiveDateTime;
-
 
 #[derive(Debug)]
 struct Person {
@@ -10,6 +8,7 @@ struct Person {
     dob: NaiveDateTime,
 }
 //implmenting the Person struct
+#[allow(dead_code)]
 impl Person {
     /// Creates a new [`Person`].
     fn new(
@@ -61,10 +60,13 @@ impl Person {
         now.signed_duration_since(self.dob).num_days() / 365
     }
 }
+
 #[derive(Debug)]
 struct Pepole {
     people: Vec<Person>,
 }
+
+#[allow(dead_code)]
 impl Pepole {
     fn new() -> Pepole {
         Pepole { people: Vec::new() }
@@ -88,8 +90,6 @@ impl Pepole {
         self.people.len()
     }
 }
-    
-
 
 fn main() {
     let p: Person = Person::new(
