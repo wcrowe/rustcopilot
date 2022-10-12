@@ -114,6 +114,7 @@ fn main() {
         NaiveDateTime::parse_from_str("1940-01-01 00:00:00", "%Y-%m-%d %H:%M:%S").unwrap(),
     ));
     // print list of people
+    println!(r#"List of people:"#);
     for (i, p) in k.0.iter().enumerate() {
         println!("{}: {} is {}", i, p.full_name(), p.age());
     }
@@ -122,12 +123,13 @@ fn main() {
         1,
         Person::new(
             "Jane".to_string(),
-            Some("A".to_string()),
+            Some("Alice".to_string()),
             "Smith".to_string(),
             NaiveDateTime::parse_from_str("1930-01-01 00:00:00", "%Y-%m-%d %H:%M:%S").unwrap(),
         ),
     );
     // print list of people
+    println!(r#"Updated of people:"#);
     for (i, p) in k.0.iter().enumerate() {
         println!("{}: {} is {}", i, p.full_name(), p.age());
     }
