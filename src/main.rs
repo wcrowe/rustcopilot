@@ -19,7 +19,7 @@ impl Person {
     ) -> Person {
         Person {
             first_name,
-            middle_name: Some(middle_name).map(|x| x.unwrap_or_default()).unwrap_or_default(),
+            middle_name: Some(middle_name).map(|x: Option<String>| x.unwrap_or_default()).unwrap_or_default(),
             last_name,
             dob,
         }
@@ -47,7 +47,7 @@ impl Person {
     }
 
     fn full_name(&self) -> String {
-        if *&self.middle_name.trim().is_empty() {
+        if self.middle_name.trim().is_empty() {
             format!("{} {}", self.first_name, self.last_name)
         } else {
             format!(
