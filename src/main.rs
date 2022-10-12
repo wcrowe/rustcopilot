@@ -19,7 +19,7 @@ impl Person {
     ) -> Person {
         Person {
             first_name,
-            middle_name: middle_name.unwrap_or(String::new()),
+            middle_name: Some(middle_name).map(|x| x.unwrap_or_default()).unwrap_or_default(),
             last_name,
             dob,
         }
