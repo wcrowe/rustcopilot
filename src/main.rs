@@ -3,7 +3,7 @@ use chrono::NaiveDateTime;
 #[derive(Debug)]
 struct Person {
     first_name: String,
-    middle_name: Option<String>,
+    middle_name: String,
     last_name: String,
     dob: NaiveDateTime,
 }
@@ -19,10 +19,7 @@ impl Person {
     ) -> Person {
         Person {
             first_name,
-            middle_name: match middle_name {
-                Some(middle_name) => Some(middle_name),
-                None => None,
-            },
+            middle_name: middle_name.unwrap_or(String::new()),
             last_name,
             dob,
         }
@@ -39,7 +36,7 @@ impl Person {
             self.first_name = first_name;
         }
         if let Some(middle_name) = middle_name {
-            self.middle_name = Some(middle_name);
+            self.middle_name = middle_name;
         }
         if let Some(last_name) = last_name {
             self.last_name = last_name;
@@ -50,9 +47,13 @@ impl Person {
     }
 
     fn full_name(&self) -> String {
-        match &self.middle_name {
-            Some(middle_name) => format!("{} {} {}", self.first_name, middle_name, self.last_name),
-            None => format!("{} {}", self.first_name, self.last_name),
+        if *&self.middle_name.trim().is_empty() {
+            format!("{} {}", self.first_name, self.last_name)
+        } else {
+            format!(
+                "{} {} {}",
+                self.first_name, self.middle_name, self.last_name
+            )
         }
     }
     fn age(&self) -> i64 {
@@ -62,32 +63,30 @@ impl Person {
 }
 
 #[derive(Debug)]
-struct Pepole {
-    people: Vec<Person>,
-}
+struct Pepole(Vec<Person>);
 
 #[allow(dead_code)]
 impl Pepole {
     fn new() -> Pepole {
-        Pepole { people: Vec::new() }
+        Pepole(Vec::new())
     }
     fn add(&mut self, person: Person) {
-        self.people.push(person);
+        self.0.push(person);
     }
     fn remove(&mut self, index: usize) {
-        self.people.remove(index);
+        self.0.remove(index);
     }
     fn update(&mut self, index: usize, person: Person) {
-        self.people[index] = person;
+        self.0[index] = person;
     }
     fn get(&self, index: usize) -> &Person {
-        &self.people[index]
+        &self.0[index]
     }
     fn get_mut(&mut self, index: usize) -> &mut Person {
-        &mut self.people[index]
+        &mut self.0[index]
     }
     fn len(&self) -> usize {
-        self.people.len()
+        self.0.len()
     }
 }
 
@@ -115,7 +114,7 @@ fn main() {
         NaiveDateTime::parse_from_str("1940-01-01 00:00:00", "%Y-%m-%d %H:%M:%S").unwrap(),
     ));
     // print list of people
-    for (i, p) in k.people.iter().enumerate() {
+    for (i, p) in k.0.iter().enumerate() {
         println!("{}: {} is {}", i, p.full_name(), p.age());
     }
     // update the 2nd person
@@ -129,7 +128,7 @@ fn main() {
         ),
     );
     // print list of people
-    for (i, p) in k.people.iter().enumerate() {
+    for (i, p) in k.0.iter().enumerate() {
         println!("{}: {} is {}", i, p.full_name(), p.age());
     }
 }
