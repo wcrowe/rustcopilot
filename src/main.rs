@@ -7,7 +7,10 @@ struct Person {
     last_name: String,
     dob: NaiveDateTime,
 }
-//implmenting the Person struct
+/*
+implmenting the Person struct
+The default value a String is an empty string
+*/
 #[allow(dead_code)]
 impl Person {
     /// Creates a new [`Person`].
@@ -19,7 +22,7 @@ impl Person {
     ) -> Person {
         Person {
             first_name,
-            middle_name: Some(middle_name).map(|x: Option<String>| x.unwrap_or_default()).unwrap_or_default(),
+            middle_name: middle_name.unwrap_or_default(),
             last_name,
             dob,
         }
@@ -97,8 +100,8 @@ fn main() {
         "Doe".to_string(),
         NaiveDateTime::parse_from_str("1990-01-01 00:00:00", "%Y-%m-%d %H:%M:%S").unwrap(),
     );
-    println!("{:?}", &p);
-    println!("Full name: {}", &p.full_name());
+    // println!("{:?}", &p);
+    // println!("Full name: {}", &p.full_name());
     let mut k = Pepole::new();
     k.add(p);
     k.add(Person::new(
@@ -117,6 +120,7 @@ fn main() {
     println!(r#"List of people:"#);
     for (i, p) in k.0.iter().enumerate() {
         println!("{}: {} is {}", i, p.full_name(), p.age());
+        //  println!("{:?}", &p);
     }
     // update the 2nd person
     k.update(
@@ -132,5 +136,6 @@ fn main() {
     println!(r#"Updated of people:"#);
     for (i, p) in k.0.iter().enumerate() {
         println!("{}: {} is {}", i, p.full_name(), p.age());
+        //  println!("{:?}", &p);
     }
 }
