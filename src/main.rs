@@ -8,7 +8,7 @@ struct Person {
     dob: NaiveDateTime,
 }
 /*
-implmenting the Person struct
+implementing the Person struct
 The default value a String is an empty string
 */
 #[allow(dead_code)]
@@ -66,12 +66,12 @@ impl Person {
 }
 
 #[derive(Debug)]
-struct Pepole(Vec<Person>);
+struct People(Vec<Person>);
 
 #[allow(dead_code)]
-impl Pepole {
-    fn new() -> Pepole {
-        Pepole(Vec::new())
+impl People {
+    fn new() -> People {
+        People(Vec::new())
     }
     fn add(&mut self, person: Person) {
         self.0.push(person);
@@ -102,7 +102,7 @@ fn main() {
     );
     // println!("{:?}", &p);
     // println!("Full name: {}", &p.full_name());
-    let mut k = Pepole::new();
+    let mut k = People::new();
     k.add(p);
     k.add(Person::new(
         "Jane".to_string(),
