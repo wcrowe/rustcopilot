@@ -129,7 +129,7 @@ fn main() {
             "Jane".to_string(),
             Some("Alice".to_string()),
             "Smith".to_string(),
-            NaiveDateTime::parse_from_str("1930-01-01 00:00:00", "%Y-%m-%d %H:%M:%S").unwrap(),
+            NaiveDateTime::parse_from_str("1930-10-08 00:00:00", "%Y-%m-%d %H:%M:%S").unwrap(),
         ),
     );
     // print list of people
